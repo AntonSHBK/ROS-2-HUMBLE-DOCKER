@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  workspase:
+    container_name: workspase
+    build: .
+    # command:
+
+        
+    ports:
+      - "7200-7210:7200-7210"
+    working_dir: /workspase
+    volumes:
+      - .:/workspase
+    env_file:
+      - ./env/.env
