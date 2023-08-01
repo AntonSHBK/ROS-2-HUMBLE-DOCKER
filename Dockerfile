@@ -14,8 +14,8 @@ RUN pip install --upgrade pip
 RUN pip install -r /tmp/development.txt
 
 # set work directory
-RUN mkdir /workspace
-WORKDIR /workspace
+RUN mkdir /app
+WORKDIR /app
 
 # copy project
 COPY . .
