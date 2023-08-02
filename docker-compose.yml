@@ -1,23 +1,4 @@
-# version: '3.8'
-
-# services:
-#   app:
-#     container_name: app
-#     build: .
-#     # command:
-
-        
-#     ports:
-#       - "7200-7210:7200-7210"
-#     working_dir: /app
-#     volumes:
-#       - .:/app
-#     env_file:
-#       - ./mobile_platform/env/.env
-
-
-
-version: '2'
+version: '3.8'
 
 networks:
   ros:
@@ -25,55 +6,48 @@ networks:
 
 services:
   ros-master:
-    image: ros:kinetic-ros-core
-    command: stdbuf -o L roscore
-    networks:
-      - ros
-    restart: always
+    container_name: ros-master
+    build: .
+    tty: true
+    working_dir: /workspase
+    volumes:
+      - .:/workspase
+    env_file:
+      - ./env/.env
+
 
   talker:
-    image: ros:kinetic-ros-core
+    build: .
+    container_name: talker
     depends_on:
       - ros-master
-    environment:
-      - "ROS_MASTER_URI=http://ros-master:11311"
-    command: stdbuf -o L rostopic pub /chatter std_msgs/String "hello" -r 1
+    env_file:
+      - ./env/.env
+    command: ros2 run demo_nodes_cpp talker
     networks:
       - ros
-    restart: always
+
 
   listener:
-    image: ros:kinetic-ros-core
+    build: .
+    container_name: listener
     depends_on:
       - ros-master
-    environment:
-      - "ROS_MASTER_URI=http://ros-master:11311"
-    command: stdbuf -o L rostopic echo /chatter
+    env_file:
+      - ./env/.env
+    command: ros2 run demo_nodes_py listener
     networks:
       - ros
-    restart: always
 
 
-  viz:
-    image: osrf/ros:kinetic-desktop-full
-    container_name: ros_visualizer
+  vis:
+    build: .
+    container_name: vis
     depends_on:
       - ros-master
     networks:
       - ros
-    environment:
-      - "ROS_MASTER_URI=http://ros-master:11311"
-      - "DISPLAY"
-      - "QT_X11_NO_MITSHM=1" #fix some QT bugs
-    #share your user to the container in order to access your x11
+    env_file:
+      - ./env/.env
     user: ${UGID}
-    volumes: 
-      #share your x11 socket and permissions to the container
-      - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      - /etc/group:/etc/group:ro
-      - /etc/passwd:/etc/passwd:ro
-      - /etc/shadow:/etc/shadow:ro
-      - /etc/sudoers:/etc/sudoers:ro
-      - /etc/sudoers.d:/etc/sudoers.d:ro
-      - /home/<your_user>:/home/<your_user>:rw #share your home with write permissions
     command: rqt
