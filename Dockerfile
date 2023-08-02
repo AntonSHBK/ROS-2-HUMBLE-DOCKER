@@ -39,8 +39,8 @@ RUN apt-get install -y git && apt-get install -y python3-pip
 
 # Additional commands (installing dependencies)
 COPY ./entrypoint.sh .
-RUN sed -i 's/\r$//g' /workspace/entrypoint.sh
-RUN chmod +x /workspace/entrypoint.sh
+RUN sed -i 's/\r$//g' /workspace/dependencies.sh
+RUN chmod +x /workspace/dependencies.sh
 
 # install dependencies
 COPY requirements/common.txt /tmp/common.txt
