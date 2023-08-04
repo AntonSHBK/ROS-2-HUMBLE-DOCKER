@@ -9,11 +9,13 @@ services:
     container_name: ros-master
     build: .
     tty: true
-    working_dir: /workspase
+    working_dir: /workspace
     volumes:
-      - .:/workspase
+      - .:/workspace
     env_file:
       - ./env/.env
+    networks:
+      - ros
 
 
   talker:
@@ -49,5 +51,4 @@ services:
       - ros
     env_file:
       - ./env/.env
-    user: ${UGID}
-    command: rqt
+    command: rviz2

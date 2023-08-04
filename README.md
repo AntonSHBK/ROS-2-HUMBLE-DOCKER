@@ -2,6 +2,11 @@
 
 This tutorial is designed as a basis for further projects written using the ROS framework. Here we create containers for quick and convenient work in them. Containers can be launched separately manually via Dockerfile or via docker-compose, depending on the preference and the necessary functionality. It also describes the settings for using GUI applications inside Docker.
 
+## Final result
+<video width="1280" height="600" controls>
+  <source src="imgs/final.mp4" type="video/mp4">
+</video>
+
 ## Pre-installation:
 - Get Docker desktop installed and running by following this [Guide](https://docs.docker.com/desktop/install/windows-install/)
 - Ensure WSL-2 is installed or upgraded from WSL-1 from this [link](https://learn.microsoft.com/en-us/windows/wsl/install)
@@ -24,8 +29,6 @@ docker-compose up
 ```
 In order to use docker-compose tools correctly, you should study docker-compose.yml and also refer to the technical documentation.
 In this repository, I used environment variables that are rendered in this file [.env](env/.env) . They are used when building containers, as well as when launching containers via docker-compose.
-
-Dockerfile is formed in such a way as to reduce the developer's action. Installing dependencies for the ROS framework are placed in a file [dependencies.sh](dependencies.sh)
 
 All the necessary dependencies for Python are placed in the requirements folder. There are 2 files in this folder  [common.txt](requirements/common.txt) this is a file with the main dependencies and [developmet.txt](requirements/developmet.txt) which contains files for debugging if necessary. This is done in order to use a container for production.
 
