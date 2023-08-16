@@ -19,6 +19,7 @@ COPY . .
 
 # Set shell console and install some requirements 
 SHELL [ "/bin/bash" , "-c" ]
+
 RUN apt-get update
 RUN apt-get install -y git && apt-get install -y python3-pip
 
