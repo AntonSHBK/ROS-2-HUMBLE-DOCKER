@@ -34,4 +34,7 @@ COPY requirements/developmet.txt /tmp/development.txt
 RUN pip install --upgrade pip
 RUN pip install -r /tmp/development.txt
 
+# added ros source
+RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+
 RUN echo "All done!"
