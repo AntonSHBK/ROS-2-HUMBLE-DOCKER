@@ -1,9 +1,10 @@
+<img src="imgs/logo.jpg" alt="drawing" width="800"/>
+
 # ROS2 HUMBLE DOCKER GUI
 
 This tutorial is designed as a basis for further projects written using the ROS framework. Here we create containers for quick and convenient work in them. Containers can be launched separately manually via Dockerfile or via docker-compose, depending on the preference and the necessary functionality. It also describes the settings for using GUI applications inside Docker.
 
-## Final result
-<img src="imgs/final.jpg" alt="drawing" width="800"/>
+![gide](imgs/gide.gif)
 
 ## Pre-installation:
 - Get Docker desktop installed and running by following this [Guide](https://docs.docker.com/desktop/install/windows-install/)
